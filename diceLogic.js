@@ -1,5 +1,4 @@
 window.onload = function(e) {
-  // get number of units
 
   var infantryRolls = [];
   var artillaryRolls = [];
@@ -9,6 +8,7 @@ window.onload = function(e) {
   var artillaryNum = 0;
   var tankNum = 0;
 
+  // get number of units
   document.querySelector('#infantryInput').onchange = function(e) {
     document.querySelector('.infantryValue').innerHTML = e.target.value;
     infantryNum = parseInt(e.target.value);
@@ -21,6 +21,7 @@ window.onload = function(e) {
     document.querySelector('.tankValue').innerHTML = e.target.value;
     tankNum = parseInt(e.target.value);
   }
+
 
   // calculate dice rolls
 
@@ -74,11 +75,11 @@ window.onload = function(e) {
     //   if (unitRolls[i][i][0][i] <= 1) {
     //     hits++;
     //   }
+    // }
 
 
     // display dice number of hits
 
     console.log(hits);
   }
-
 }
