@@ -8,6 +8,14 @@ window.onload = function(e) {
   var artillaryNum = 0;
   var tankNum = 0;
 
+  var rollCount;
+  var dieRolls;
+
+  var unitRolls;
+  var unitNum;
+
+  var hits;
+
   // get number of units
   document.querySelector('#infantryInput').onchange = function(e) {
     document.querySelector('.infantryValue').innerHTML = e.target.value;
@@ -27,22 +35,27 @@ window.onload = function(e) {
 
   document.querySelector('#calculate').onclick = function(e) {
 
-    var rollCount = infantryNum + artillaryNum + tankNum;
-    var dieRolls = [];
-
+    rollCount = infantryNum + artillaryNum + tankNum;
+    dieRolls = [];
+    console.log(rollCount);
     // roll the dice
+    console.log(unitRolls);
+    console.log(infantryRolls);
     for (var i = 0; i < rollCount; i++) {
       // store it
       dieRolls.push(Math.floor(Math.random() * 6) + 1);
     }
     // determine which unit rolled what
 
-    var unitRolls = [infantryRolls, artillaryRolls, tankRolls];
-    var unitNum = [infantryNum, artillaryNum, tankNum];
+    unitRolls = [infantryRolls, artillaryRolls, tankRolls];
+    unitNum = [infantryNum, artillaryNum, tankNum];
+
+    console.log(unitRolls);
+    console.log(infantryRolls);
 
     console.log(dieRolls);
     for (var i = 0; i < 3; i++) {
-      unitRolls[i][i] = dieRolls.slice(0, unitNum[i]);
+      unitRolls[i][0] = dieRolls.slice(0, unitNum[i]);
       dieRolls.splice(0, unitNum[i]);
       console.log(unitRolls[i][i]);
     }
@@ -51,21 +64,21 @@ window.onload = function(e) {
     console.log(unitRolls[0]);
 
     // determine hits
-    var hits = 0
+    hits = 0
     for (var i = 0; i < infantryRolls[0].length; i++) {
       if (infantryRolls[0][i] <= 1) {
         hits++;
       }
     }
 
-    for (var i = 0; i < artillaryRolls[1].length; i++) {
-      if (artillaryRolls[1][i] <= 2) {
+    for (var i = 0; i < artillaryRolls[0].length; i++) {
+      if (artillaryRolls[0][i] <= 2) {
         hits++;
       }
     }
 
-    for (var i = 0; i < tankRolls[2].length; i++) {
-      if (tankRolls[2][i] <= 3) {
+    for (var i = 0; i < tankRolls[0].length; i++) {
+      if (tankRolls[0][i] <= 3) {
         hits++;
       }
     }
@@ -80,6 +93,29 @@ window.onload = function(e) {
 
     // display dice number of hits
 
+    //reset
+
     console.log(hits);
+  }
+  document.querySelector('#reset').onclick = function(e) {
+    document.querySelector('#infantryInput').value = 0;
+    document.querySelector('.infantryValue').innerHTML = 0;
+
+    document.querySelector('#artillaryInput').value = 0;
+    document.querySelector('.artillaryValue').innerHTML = 0;
+
+    document.querySelector('#tankInput').value = 0;
+    document.querySelector('.tankValue').innerHTML = 0;
+
+    // reset values
+
+    console.log("reset");
+
+    infantryNum = 0;
+    artillaryNum = 0;
+    tankNum = 0;
+
+    console.log(unitRolls);
+    console.log(infantryRolls);
   }
 }
