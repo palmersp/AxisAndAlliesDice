@@ -92,7 +92,7 @@ window.onload = function(e) {
 
 
     // display dice number of hits
-
+    document.querySelector('.displayHits').innerHTML = hits + " Hits!";
     //reset
 
     console.log(hits);
